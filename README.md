@@ -1,24 +1,63 @@
 # Libtycoin
 
-A peer-to-peer electronic cash system.
+Libtycoin is a peer-to-peer electronic cash system: payments sent directly from
+one person to another, with no bank and no intermediary.
 
-This is a restatement of the design published by Satoshi Nakamoto in 2008, repeated without alteration. Nothing in it has been improved upon, and no improvement has been attempted.
+This is a guide to running it.
 
-The paper sets out the case for founding such a chain afresh, while participation in it remains open to all. Issuance is front-loaded by construction; the securing of a chain concentrates as it matures; and acquisition, in time, returns to the intermediaries the design was meant to render unnecessary. None of this is a fault. It is what success looks like. A mature chain does other things well — it holds value, it settles large sums, it endures — and those are the things it should be left to do.
+## 1. Build
 
-The opening years are the only period in which the terms stand equal for everyone, and no chain furnishes them twice. This chain will in its turn stand where the first now stands. Need, rather than preference, is what warrants taking the design up again: a beginning is worth having only where it is seldom had.
+Libtycoin builds with CMake. From the source directory:
 
-The paper is available here: [LIBTYCOIN_WHITEPAPER.pdf](LIBTYCOIN_WHITEPAPER.pdf)
+    cmake -B build
+    cmake --build build
 
-SHA-256:
+This produces the programs in `build/bin`:
 
-    a7981f2d43d8840a3e323b8d3c1da8110829b5cccae284c646991bfb0443c443
+- `libtycoind` — the node
+- `libtycoin-cli` — command-line control
+- `libtycoin-wallet` — wallet management
 
-Verify with:
+See the `doc/` folder for the packages your system needs first.
 
-    sha256sum LIBTYCOIN_WHITEPAPER.pdf
+## 2. Run a node
 
-An implementation will follow.
+    libtycoind -daemon
 
-Tobin Wyler  
-tobinwyler@proton.me
+The node connects to the network and synchronises the chain. Check its state:
+
+    libtycoin-cli getblockchaininfo
+
+To help the network, open the peer port on your firewall so others can connect
+to you.
+
+## 3. Make a wallet
+
+    libtycoin-cli createwallet "main"
+    libtycoin-cli getnewaddress
+
+The second command returns an address — this is where you receive coins.
+
+## 4. Mine
+
+While the network is young, an ordinary computer can still find blocks. Mine to
+your address:
+
+    libtycoin-cli generatetoaddress 1 YOUR_ADDRESS 100000000000
+
+Use the address from step 3. Each block found pays its reward to that address.
+
+## 5. Send and receive
+
+To receive, give the sender your address (step 3). To send:
+
+    libtycoin-cli sendtoaddress THEIR_ADDRESS AMOUNT
+
+## Verify this release
+
+Every release is signed with PGP. Signing key:
+
+    A69F A35A 4BA7 EC16 CFDD  EED4 A7B9 CE90 6BCC 4ED6
+
+
+— Tobin Wyler

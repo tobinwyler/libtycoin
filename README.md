@@ -43,7 +43,7 @@ The second command returns an address — this is where you receive coins.
 While the network is young, an ordinary computer can still find blocks. Mine to
 your address:
 
-    libtycoin-cli generatetoaddress 1 YOUR_ADDRESS 100000000000
+    libtycoin-cli generatetoaddress 1 YOUR_ADDRESS 2147483647
 
 Use the address from step 3. Each block found pays its reward to that address.
 

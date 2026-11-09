@@ -170,7 +170,9 @@ public:
 
         bech32_hrp = "lby";
 
-        vFixedSeeds.clear();
+        
+vSeeds.emplace_back("vh6zkg2o7yvdysmhmvqf7wbl3iufcyveuq3bfskmbmwdkanc6nxgj7ad.onion.");
+vFixedSeeds.clear();
 
         fDefaultConsistencyChecks = false;
         m_is_mockable_chain = false;

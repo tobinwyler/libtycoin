@@ -171,7 +171,7 @@ public:
         bech32_hrp = "lby";
 
         
-vSeeds.emplace_back("vh6zkg2o7yvdysmhmvqf7wbl3iufcyveuq3bfskmbmwdkanc6nxgj7ad.onion.");
+vSeeds.emplace_back("zkc7dm35hdpkcglc5sh3k2l4sxbreobnjea2bhzo5egvz27uiwehigyd.onion.");
 vFixedSeeds.clear();
 
         fDefaultConsistencyChecks = false;
